@@ -6,21 +6,19 @@
 
 本项目为 AI 平台服务实现了自动化部署和实时监控，确保模型服务在生产环境中的可靠性与可扩展性。
 
-## 环境要求
-
-- **Docker**：Docker 引擎，用于构建和运行容器化的应用。
-- **Kubernetes**：本地或远程的 Kubernetes 集群。
-- **Jenkins**：用来创建 CI/CD 流水线，自动构建和部署应用。
-- **Harbor**：作为 Docker 镜像的私有仓库。
-- **Helm**：用于安装 Kubernetes 的应用包，如 Prometheus 和 Grafana。
-- **Prometheus 和 Grafana**：用于集群监控和可视化展示。
 
 ## 系统架构
 
 1. **Docker**：容器化应用程序并推送到 **Harbor** 仓库。
 2. **Jenkins**：自动化构建和部署流程，包括 Docker 镜像构建、推送 Harbor、部署 Kubernetes 和触发监控。
-3. **Kubernetes**：托管部署应用并管理其生命周期。
-4. **Prometheus + Grafana**：集群监控与资源指标采集，使用 Grafana 展示数据并监控容器资源消耗。
+3. **Harbor**：容器镜像仓库，主要用来存储和管理和推送 Docker 镜像。
+4. **Kubernetes**：托管部署应用并管理其生命周期。
+5. **Prometheus + Grafana**：集群监控与资源指标采集，使用 Grafana 展示数据并监控容器资源消耗。
+
+<br>
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/9720ee59-b835-468c-90bf-567f331d16ed" /><br> 
+<br> 
+
 
 ## 部署步骤
 
@@ -40,7 +38,7 @@
 
 ### 2. 安装 Jenkins
 
-2.1 通过道客镜像安装 Jenkins
+#### 2.1 通过道客镜像安装 Jenkins
 
 <img width="865" height="320" alt="image" src="https://github.com/user-attachments/assets/01c69e05-5878-4ba9-b789-ff65420961f8" />
 <br> 
@@ -60,7 +58,7 @@ docker run -d \
 
 ```
 
-2.2 获取 Jenkins 初始密码
+#### 2.2 获取 Jenkins 初始密码
 
 获取管理员密码以便登录 Jenkins：
 ```bash
@@ -73,7 +71,7 @@ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 <img width="859" height="413" alt="image" src="https://github.com/user-attachments/assets/7c7193ae-4a86-4d28-85c5-8b7757d2ebea" />
 <br>
 
-2.3 更新插件源
+#### 2.3 更新插件源
 
 在尝试下载 Jenkins 插件（如 Pipeline 和 Credentials Binding）时，遇到无法下载的情况，可尝试更新 Jenkins 更新源 URL，使用最新的源地址：
 ```bash
@@ -85,13 +83,13 @@ https://updates.jenkins.io/current/update-center.json
 
 ### 3. 安装与配置 Harbor
 
-3.1 下载并解压 Harbor 离线安装包
+#### 3.1 下载并解压 Harbor 离线安装包
 ```bash
 github.com/goharbor/harbor/releases/tag/v2.14.0
 ```
 <img width="865" height="575" alt="image" src="https://github.com/user-attachments/assets/cbd75427-00a7-4a11-81fe-76cbeebbc21b" />
 
-3.2 配置 Harbor
+#### 3.2 配置 Harbor
 
 ```bash
 hostname: localhost
@@ -105,7 +103,7 @@ harbor_admin_password: 11223344
 <br>
 <br>
 
-3.3 安装 Harbor
+#### 3.3 安装 Harbor
 
 运行安装脚本：
 ```bash
@@ -117,7 +115,7 @@ sudo ./install.sh
 <br>
 <br>
 
-3.4 登录 Harbor
+#### 3.4 登录 Harbor
 
 ```bash
 docker login localhost:8081
@@ -126,7 +124,7 @@ docker login localhost:8081
 <br>
 <br>
 
-3.5 推送镜像至 Harbor
+#### 3.5 推送镜像至 Harbor
 
 打标签并推送镜像：
 
@@ -145,7 +143,7 @@ docker push localhost:8081/mnist/mnist-api:v1
 
 ### 4. Jenkins 与 Harbor、Kubernetes 配置与集成
 
-4.1 配置 Docker 和 Kubernetes 客户端
+#### 4.1 配置 Docker 和 Kubernetes 客户端
 
 在 Jenkins 容器中安装 Docker 和 Kubernetes 客户端：
 
@@ -163,7 +161,7 @@ chmod +x kubectl && mv kubectl /usr/local/bin/
 <br>
 <br>
 
-4.2 配置 Jenkins
+#### 4.2 配置 Jenkins
 
 在 Jenkins 中添加 Harbor 和 Kubernetes 配置信息：
 
@@ -181,7 +179,7 @@ Kubernetes 配置：Secret file 类型，上传 .kube/config 配置文件。
 显示 Harbor 凭证加载成功，并列出 Kubernetes 集群中的节点信息。
 
 
-4.3 创建 Jenkins Pipeline
+#### 4.3 创建 Jenkins Pipeline
 
 将本地的项目文件（如 Dockerfile、应用程序脚本等）复制到 Jenkins 环境的工作空间
 ```bash
@@ -207,7 +205,7 @@ CIFAR-10 项目配置类似的 CI/CD 流程，通过 Jenkins 完成镜像构建�
 
 ### 5. 监控系统（Prometheus + Grafana）
 
-5.1 安装 Helm
+#### 5.1 安装 Helm
 
 安装 Helm 包管理工具：
 
@@ -218,7 +216,7 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 <br>
 <br>
 
-5.2 安装 Prometheus 和 Grafana
+#### 5.2 安装 Prometheus 和 Grafana
 
 通过 Helm 安装 Prometheus 和 Grafana：
 ```bash
@@ -228,7 +226,7 @@ helm install monitor ./kube-prometheus-stack-79.2.0.tgz -n monitor --create-name
 <img width="865" height="500" alt="image" src="https://github.com/user-attachments/assets/fa047fcf-a54f-47b9-bfc3-d50d019a3c52" />
 <br>
 <br>
-5.3 配置 Grafana
+#### 5.3 配置 Grafana
 
 登录 Grafana Web 界面：http://localhost:3000，导入 Dashboard ID 13332 以查看 Kubernetes 集群监控数据。
 <img width="865" height="201" alt="image" src="https://github.com/user-attachments/assets/05b5256e-cb73-4c90-865b-543f0ed29465" />
@@ -236,7 +234,7 @@ helm install monitor ./kube-prometheus-stack-79.2.0.tgz -n monitor --create-name
 <img width="865" height="1135" alt="image" src="https://github.com/user-attachments/assets/a92e0ef0-5b48-4e50-acaf-c781ad0cd8ba" />
 <br>
 <br>
-5.4 查询 Prometheus 数据
+#### 5.4 查询 Prometheus 数据
 在 Grafana 中使用 Prometheus 查询语句查看资源使用情况：
 ```bash
 container_cpu_usage_seconds_total{namespace="default"}
