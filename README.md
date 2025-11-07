@@ -24,7 +24,7 @@
 
 ## 部署步骤
 
-1. 配置 Docker 镜像加速器（可选
+## 1. 配置 Docker 镜像加速器（可选）
 
 
 加速 Docker 镜像稳定下载，可以在Docker Desktop设置镜像源
