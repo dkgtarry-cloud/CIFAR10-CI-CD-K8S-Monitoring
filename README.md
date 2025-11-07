@@ -161,6 +161,7 @@ chmod +x kubectl && mv kubectl /usr/local/bin/
 
 <img width="865" height="144" alt="image" src="https://github.com/user-attachments/assets/9a999f82-b6ec-4ba4-a198-c44f6d3889ab" />
 <br>
+<br>
 
 4.2 配置 Jenkins
 
@@ -174,6 +175,7 @@ Kubernetes 配置：Secret file 类型，上传 .kube/config 配置文件。
 <br>
 
 凭证验证：
+
 <img width="865" height="796" alt="image" src="https://github.com/user-attachments/assets/1a804e2d-d5ca-4350-a6c7-fea41fc8e102" />
 <br>
 显示 Harbor 凭证加载成功，并列出 Kubernetes 集群中的节点信息。
@@ -187,15 +189,18 @@ docker cp . jenkins:/var/jenkins_home/workspace/CIFAR10-CI-CD-Pipeline
 ```
 <img width="865" height="72" alt="image" src="https://github.com/user-attachments/assets/73423d0d-2b3d-4a0e-8694-b7a307e1f0dd" />
 <img width="865" height="33" alt="image" src="https://github.com/user-attachments/assets/fc202361-a09b-4882-95e3-068217e026bd" />
-
+<br>
 Jenkins 自动构建镜像
+
 在 Jenkins Pipeline 中，设置自动构建 Docker 镜像，构建完成后将镜像推送到 Harbor 私有仓库，使用 kubectl 命令部署到 Kubernetes 集群，最后验证 Pod 更新成功
+
 <img width="865" height="666" alt="image" src="https://github.com/user-attachments/assets/c0503d79-3618-4e72-889d-570415200417" />
 <img width="865" height="838" alt="image" src="https://github.com/user-attachments/assets/45d79556-765b-4b68-b0d8-db00bded2401" />
 <img width="865" height="145" alt="image" src="https://github.com/user-attachments/assets/9cc1bd09-84b2-4905-912f-44c4d8f0c5da" />
 <br>
 
 CIFAR-10 项目配置类似的 CI/CD 流程，通过 Jenkins 完成镜像构建、推送到 Harbor、部署到 Kubernetes 并验证更新。
+
 <img width="865" height="548" alt="image" src="https://github.com/user-attachments/assets/a7fcdd1e-79f7-44e7-8d2c-c37f331a220a" />
 <br>
 
@@ -211,6 +216,7 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
 <img width="865" height="188" alt="image" src="https://github.com/user-attachments/assets/a4dc7c45-ae4a-4c08-bc7e-c1174da40707" />
 <br>
+<br>
 
 5.2 安装 Prometheus 和 Grafana
 
@@ -221,7 +227,7 @@ helm install monitor ./kube-prometheus-stack-79.2.0.tgz -n monitor --create-name
 <img width="865" height="550" alt="image" src="https://github.com/user-attachments/assets/fd3d0074-3a4f-4575-9fa2-6cd9d1bbb88b" />
 <img width="865" height="500" alt="image" src="https://github.com/user-attachments/assets/fa047fcf-a54f-47b9-bfc3-d50d019a3c52" />
 <br>
-
+<br>
 5.3 配置 Grafana
 
 登录 Grafana Web 界面：http://localhost:3000，导入 Dashboard ID 13332 以查看 Kubernetes 集群监控数据。
@@ -229,7 +235,7 @@ helm install monitor ./kube-prometheus-stack-79.2.0.tgz -n monitor --create-name
 <img width="865" height="972" alt="image" src="https://github.com/user-attachments/assets/b0069162-5252-4135-814c-9df0a1f3d94c" />
 <img width="865" height="1135" alt="image" src="https://github.com/user-attachments/assets/a92e0ef0-5b48-4e50-acaf-c781ad0cd8ba" />
 <br>
-
+<br>
 5.4 查询 Prometheus 数据
 在 Grafana 中使用 Prometheus 查询语句查看资源使用情况：
 ```bash
