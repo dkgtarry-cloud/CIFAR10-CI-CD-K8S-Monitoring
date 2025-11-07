@@ -38,14 +38,17 @@
 <img width="865" height="308" alt="image" src="https://github.com/user-attachments/assets/f048e577-a2bf-4f52-b045-960e5317fe98" />
 <br> 
 
-2. 安装 Jenkins
+### 2. 安装 Jenkins
 
 2.1 通过道客镜像安装 Jenkins
 
 <img width="865" height="320" alt="image" src="https://github.com/user-attachments/assets/01c69e05-5878-4ba9-b789-ff65420961f8" />
 <br> 
+
 运行以下命令启动 Jenkins 容器：
+
 ```bash
+
 docker run -d \
   --name jenkins \
   --user root \
@@ -54,6 +57,7 @@ docker run -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e JAVA_OPTS="-Dhudson.model.DownloadService.noSignatureCheck=true -Dcom.sun.net.ssl.checkRevocation=false" \
   docker.m.daocloud.io/jenkins/jenkins:lts
+
 ```
 2.2 获取 Jenkins 初始密码
 
@@ -78,7 +82,7 @@ https://updates.jenkins.io/current/update-center.json
 <img width="865" height="167" alt="image" src="https://github.com/user-attachments/assets/452edda9-66cb-434c-ad1d-45932d46a37b" />
 <br>
 
-3. 安装与配置 Harbor
+### 3. 安装与配置 Harbor
 
 3.1 下载并解压 Harbor 离线安装包
 ```bash
@@ -135,7 +139,7 @@ docker push localhost:8081/mnist/mnist-api:v1
 <img width="865" height="413" alt="image" src="https://github.com/user-attachments/assets/25e30580-bad6-4f31-8be7-984c1896a6f1" />
 <br>
 
-4. Jenkins 与 Harbor、Kubernetes 配置与集成
+### 4. Jenkins 与 Harbor、Kubernetes 配置与集成
 
 4.1 配置 Docker 和 Kubernetes 客户端
 
@@ -192,7 +196,7 @@ CIFAR-10 项目配置类似的 CI/CD 流程，通过 Jenkins 完成镜像构建�
 <br>
 
 
-5. 监控系统（Prometheus + Grafana）
+### 5. 监控系统（Prometheus + Grafana）
 
 5.1 安装 Helm
 
