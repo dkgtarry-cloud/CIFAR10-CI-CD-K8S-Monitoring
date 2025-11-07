@@ -78,6 +78,8 @@ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 https://updates.jenkins.io/current/update-center.json
 ```
 
+<img width="865" height="771" alt="image" src="https://github.com/user-attachments/assets/d9ed4db3-205c-4b7e-9275-00452e94fa30" />
+
 <img width="865" height="167" alt="image" src="https://github.com/user-attachments/assets/452edda9-66cb-434c-ad1d-45932d46a37b" />
 <br>
 
