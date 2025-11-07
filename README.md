@@ -59,6 +59,7 @@ docker run -d \
   docker.m.daocloud.io/jenkins/jenkins:lts
 
 ```
+
 2.2 获取 Jenkins 初始密码
 
 获取管理员密码以便登录 Jenkins：
@@ -97,9 +98,11 @@ hostname: localhost
 port: 8081
 harbor_admin_password: 11223344
 ```
+
 <img width="865" height="421" alt="image" src="https://github.com/user-attachments/assets/96a39db5-0ad7-46c6-981d-4cc97ce1ea97" />
 
 <img width="865" height="943" alt="image" src="https://github.com/user-attachments/assets/d87a8c0a-4b7f-40df-ad50-b1278cf996d4" />
+<br>
 <br>
 
 3.3 安装 Harbor
@@ -112,6 +115,7 @@ sudo ./install.sh
 
 <img width="865" height="214" alt="image" src="https://github.com/user-attachments/assets/020a454f-5522-4d46-9800-ef95ccaf4900" />
 <br>
+<br>
 
 3.4 登录 Harbor
 
@@ -119,7 +123,7 @@ sudo ./install.sh
 docker login localhost:8081
 ```
 <img width="865" height="94" alt="image" src="https://github.com/user-attachments/assets/dbc069cc-7dd5-4a10-8ed3-97bd3824af0e" />
-
+<br>
 <br>
 
 3.5 推送镜像至 Harbor
