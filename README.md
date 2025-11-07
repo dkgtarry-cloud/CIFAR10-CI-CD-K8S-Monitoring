@@ -24,7 +24,8 @@
 
 ## 部署步骤
 
-1. 配置 Docker 镜像加速器（可选）
+1. 配置 Docker 镜像加速器（可选
+
 
 加速 Docker 镜像稳定下载，可以在Docker Desktop设置镜像源
 
@@ -37,7 +38,7 @@
 <img width="865" height="308" alt="image" src="https://github.com/user-attachments/assets/f048e577-a2bf-4f52-b045-960e5317fe98" />
 <br> 
 
-2.安装 Jenkins
+2. 安装 Jenkins
 
 2.1 通过道客镜像安装 Jenkins
 
