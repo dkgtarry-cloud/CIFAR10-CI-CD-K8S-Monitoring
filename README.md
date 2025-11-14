@@ -53,6 +53,7 @@ docker run -d \
   -p 8080:8080 -p 50000:50000 \
   -v jenkins_home:/var/jenkins_home \
   -v /var/run/docker.sock:/var/run/docker.sock \
+  -v ~/.kube/config:/root/.kube/config \
   -e JAVA_OPTS="-Dhudson.model.DownloadService.noSignatureCheck=true -Dcom.sun.net.ssl.checkRevocation=false" \
   docker.m.daocloud.io/jenkins/jenkins:lts
 
